@@ -10,3 +10,49 @@
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+body{
+    margin: 0;
+    padding: 0;
+}
+#slika {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 200px; 
+    height: 100vh; 
+    background-image: linear-gradient(rgba(97, 153, 209, 0.411), rgba(174, 174, 185, 0.801));
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+}
+
+#slika img {
+    width: 100%; 
+    height: auto;
+    border-radius: 200px;
+}
+
+#main-content {
+    margin-left: 220px; 
+    padding: 70px;
+    z-index: 1;
+}
+
+.card {
+    margin: 10px;
+}
+
+
+@media (max-width: 500px) {
+    #slika {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: 0;
+        left: 0;
+    }
+
+    #main-content {
+        margin-left: 0;
+    }
+}
