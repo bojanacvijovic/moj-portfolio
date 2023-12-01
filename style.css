@@ -14,6 +14,13 @@ body{
     margin: 0;
     padding: 0;
 }
+.hover:hover{
+    box-shadow: 0 0 20px rgba(94, 155, 175, 0.8);
+    transition: 0.5s ease;
+    border-radius: 20px;
+    transform: scale(1.10);
+    overflow: hidden;
+}
 #slika {
     position: fixed;
     top: 70px;
@@ -41,8 +48,9 @@ body{
 .card {
     margin: 10px;
 }
-
-
+.navbar-nav {
+    background-color: rgba(97, 153, 209);
+} 
 @media (max-width: 500px) {
     #slika {
         position: relative;
@@ -51,11 +59,10 @@ body{
         top: 0;
         left: 0;
     }
-
-    .navbar-nav {
-        background-color: rgba(97, 153, 209);
-    } 
-
+    .hover:hover{
+        box-shadow: 0 0 20px rgba(94, 155, 175, 0.8);
+          transition: 0.5s ease;
+    }
     #main-content {
         margin-left: 0;
     }
