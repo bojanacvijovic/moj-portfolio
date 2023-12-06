@@ -11,8 +11,7 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 body{
-    margin: 0;
-    padding: 0;
+    overflow-x: hidden;
 }
 .hover:hover{
     box-shadow: 0 0 20px rgba(94, 155, 175, 0.8);
@@ -43,6 +42,7 @@ body{
     margin-left: 220px; 
     padding: 70px;
     z-index: 1;
+
 }
 
 .card {
@@ -52,18 +52,24 @@ body{
     background-color: rgba(97, 153, 209);
 } 
 @media (max-width: 500px) {
+    body{
+        overflow-x: hidden;
+    }
     #slika {
-        position: relative;
-        width: 100%;
+        max-width: 150px;
         height: auto;
-        top: 0;
-        left: 0;
+        margin: 0 auto; 
+        display: block; 
+        position: relative; 
+        align-items: center;
     }
     .hover:hover{
         box-shadow: 0 0 20px rgba(94, 155, 175, 0.8);
           transition: 0.5s ease;
     }
     #main-content {
+        margin-top: 10px; 
         margin-left: 0;
+        margin: 0 auto;
     }
 }
