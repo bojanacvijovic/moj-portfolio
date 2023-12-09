@@ -3,7 +3,7 @@ import { data } from './podaci.js';
 const mojiPodaci = data;
 
 document.addEventListener("DOMContentLoaded", function () {
-    initializePage(); // Dodato inicijalno prikazivanje kartica
+    initializePage(); 
 });
 
 const rastuceDugme = document.getElementById('sortiraj-rastuce');
@@ -27,7 +27,7 @@ plavaCheckbox.addEventListener('change', filterByColor);
 zelenaCheckbox.addEventListener('change', filterByColor);
 
 function initializePage() {
-    // Inicijalno prikazivanje kartica
+
     createCards(mojiPodaci);
 
     const colorCheckboxes = [crvenaCheckbox, plavaCheckbox, zelenaCheckbox];
@@ -47,13 +47,13 @@ function sortirajPodatke(rastuce) {
 
 function createCards(data) {
     const container = document.getElementById('card-container');
-    container.innerHTML = "";  // Očisti prethodni sadržaj
+    container.innerHTML = ""; 
 
     data.forEach(entry => {
         if (entry.isVisible) {
             const card = document.createElement('div');
             card.className = 'grid-item';
-            card.style.color = entry.color; // Postavi boju kartice
+            card.style.color = entry.color;
             card.textContent = entry.number;
 
             container.appendChild(card);
@@ -77,7 +77,6 @@ function filterByColor() {
     }
 
     if (selectedColors.length === 0) {
-        // Ako nijedna boja nije označena, prikaži sve boje
         mojiPodaci.forEach(entry => entry.isVisible = true);
     } else {
         mojiPodaci.forEach(entry => entry.isVisible = selectedColors.includes(entry.color));
