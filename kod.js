@@ -3,7 +3,7 @@ import { data } from './podaci.js';
 const mojiPodaci = data;
 
 document.addEventListener("DOMContentLoaded", function () {
-    createCards(mojiPodaci);
+    initializePage(); // Dodato inicijalno prikazivanje kartica
 });
 
 const rastuceDugme = document.getElementById('sortiraj-rastuce');
@@ -18,6 +18,25 @@ opadajuceDugme.addEventListener('click', function () {
     createCards(mojiPodaci);
 });
 
+const crvenaCheckbox = document.getElementById('crvena-checkbox');
+const plavaCheckbox = document.getElementById('plava-checkbox');
+const zelenaCheckbox = document.getElementById('zelena-checkbox');
+
+crvenaCheckbox.addEventListener('change', filterByColor);
+plavaCheckbox.addEventListener('change', filterByColor);
+zelenaCheckbox.addEventListener('change', filterByColor);
+
+function initializePage() {
+    // Inicijalno prikazivanje kartica
+    createCards(mojiPodaci);
+
+    const colorCheckboxes = [crvenaCheckbox, plavaCheckbox, zelenaCheckbox];
+
+    colorCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', filterByColor);
+    });
+}
+
 function sortirajPodatke(rastuce) {
     if (rastuce) {
         mojiPodaci.sort((a, b) => a.number - b.number);
@@ -27,16 +46,42 @@ function sortirajPodatke(rastuce) {
 }
 
 function createCards(data) {
-    document.getElementById('card-container').replaceChildren();
-
     const container = document.getElementById('card-container');
+    container.innerHTML = "";  // Očisti prethodni sadržaj
 
     data.forEach(entry => {
-        const card = document.createElement('div');
-        card.className = 'grid-item';
-        card.style.color = entry.color; // Set card color
-        card.textContent = entry.number
+        if (entry.isVisible) {
+            const card = document.createElement('div');
+            card.className = 'grid-item';
+            card.style.color = entry.color; // Postavi boju kartice
+            card.textContent = entry.number;
 
-        container.appendChild(card);
+            container.appendChild(card);
+        }
     });
+}
+
+function filterByColor() {
+    const selectedColors = [];
+
+    if (crvenaCheckbox.checked) {
+        selectedColors.push('red');
+    }
+
+    if (plavaCheckbox.checked) {
+        selectedColors.push('blue');
+    }
+
+    if (zelenaCheckbox.checked) {
+        selectedColors.push('green');
+    }
+
+    if (selectedColors.length === 0) {
+        // Ako nijedna boja nije označena, prikaži sve boje
+        mojiPodaci.forEach(entry => entry.isVisible = true);
+    } else {
+        mojiPodaci.forEach(entry => entry.isVisible = selectedColors.includes(entry.color));
+    }
+
+    createCards(mojiPodaci);
 }
